@@ -34,6 +34,9 @@
             // 
             // listBoxSuperTanks
             // 
+            this.listBoxSuperTanks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxSuperTanks.BackColor = System.Drawing.Color.PaleTurquoise;
             this.listBoxSuperTanks.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.listBoxSuperTanks.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -47,6 +50,7 @@
             // 
             // buttonToggleSelected
             // 
+            this.buttonToggleSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonToggleSelected.BackColor = System.Drawing.Color.PaleTurquoise;
             this.buttonToggleSelected.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonToggleSelected.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -61,6 +65,7 @@
             // 
             // buttonActivateAll
             // 
+            this.buttonActivateAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonActivateAll.BackColor = System.Drawing.Color.PaleTurquoise;
             this.buttonActivateAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonActivateAll.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -75,6 +80,7 @@
             // 
             // buttonDeactivateAll
             // 
+            this.buttonDeactivateAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonDeactivateAll.BackColor = System.Drawing.Color.PaleTurquoise;
             this.buttonDeactivateAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonDeactivateAll.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
@@ -89,9 +95,10 @@
             // 
             // labelStatus
             // 
+            this.labelStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelStatus.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelStatus.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.labelStatus.Location = new System.Drawing.Point(333, 180);
+            this.labelStatus.Location = new System.Drawing.Point(333, 280);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(244, 60);
             this.labelStatus.TabIndex = 4;
@@ -103,11 +110,12 @@
             // 
             // generalSettingsButton
             // 
+            this.generalSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.generalSettingsButton.BackColor = System.Drawing.Color.PaleTurquoise;
             this.generalSettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.generalSettingsButton.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.generalSettingsButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.generalSettingsButton.Location = new System.Drawing.Point(333, 260);
+            this.generalSettingsButton.Location = new System.Drawing.Point(333, 180);
             this.generalSettingsButton.Name = "generalSettingsButton";
             this.generalSettingsButton.Size = new System.Drawing.Size(244, 30);
             this.generalSettingsButton.TabIndex = 5;
@@ -117,11 +125,12 @@
             // 
             // superTanksSettingsButton
             // 
+            this.superTanksSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.superTanksSettingsButton.BackColor = System.Drawing.Color.PaleTurquoise;
             this.superTanksSettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.superTanksSettingsButton.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.superTanksSettingsButton.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.superTanksSettingsButton.Location = new System.Drawing.Point(333, 310);
+            this.superTanksSettingsButton.Location = new System.Drawing.Point(333, 230);
             this.superTanksSettingsButton.Name = "superTanksSettingsButton";
             this.superTanksSettingsButton.Size = new System.Drawing.Size(244, 30);
             this.superTanksSettingsButton.TabIndex = 6;
@@ -140,8 +149,6 @@
             this.Controls.Add(this.buttonActivateAll);
             this.Controls.Add(this.buttonToggleSelected);
             this.Controls.Add(this.listBoxSuperTanks);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
             this.Name = "AllowedTanksForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Super Tanks Management";
