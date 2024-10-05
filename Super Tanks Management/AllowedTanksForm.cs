@@ -149,11 +149,14 @@ namespace Super_Tanks_Management
                 string itemText = listBoxSuperTanks.Items[e.Index].ToString();
                 bool isActive = attributes[itemText.Split('-')[0].Trim()] == 1;
 
-                Color bgColor = isActive ? Color.LightGreen : Color.LightCoral;
+                Color bgColor = isActive ? Color.FromArgb(76, 231, 100) : Color.FromArgb(255, 100, 120);
                 Color textColor = Color.FromArgb(0, 57, 57);
 
                 if (isSelected)
-                    bgColor = Color.DarkGray;
+                {
+                    bgColor = Color.FromArgb(21, 76, 121);
+                    textColor = Color.FromArgb(171, 219, 227);
+                }
 
                 e.Graphics.FillRectangle(new SolidBrush(bgColor), e.Bounds);
                 e.Graphics.DrawString(itemText, e.Font, new SolidBrush(textColor), e.Bounds, StringFormat.GenericDefault);
