@@ -1,5 +1,6 @@
 ﻿using Super_Tanks_Management.Properties;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -41,8 +42,68 @@ namespace Super_Tanks_Management
 
             foreach (var textBox in controls.OfType<TextBox>())
             {
-                textBox.KeyPress += Range.TextBox_KeyPress;
-                textBox.TextChanged += Range.TextBox_TextChanged;
+                textBox.KeyPress += (sender, e) =>
+                {
+                    if (textBox.Tag is Range range)
+                    {
+                        if (!range.IsInteger)
+                        {
+                            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+                            {
+                                e.Handled = true;
+                            }
+                            if (e.KeyChar == '.' && textBox.Text.Contains("."))
+                            {
+                                e.Handled = true;
+                            }
+                        }
+                        else
+                        {
+                            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                            {
+                                e.Handled = true;
+                            }
+                        }
+                    }
+                };
+
+                textBox.TextChanged += (sender, e) =>
+                {
+                    if (textBox.Tag is Range range)
+                    {
+                        if (range.IsInteger)
+                        {
+                            if (int.TryParse(textBox.Text, out int value))
+                            {
+                                if (value < range.Min)
+                                {
+                                    textBox.Text = range.Min.ToString();
+                                }
+                                else if (value > range.Max)
+                                {
+                                    textBox.Text = range.Max.ToString();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (double.TryParse(textBox.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out double value))
+                            {
+                                if (!textBox.Text.StartsWith("0."))
+                                {
+                                    if (value < range.Min)
+                                    {
+                                        textBox.Text = range.Min.ToString().Replace(',', '.');
+                                    }
+                                    else if (value > range.Max)
+                                    {
+                                        textBox.Text = range.Max.ToString().Replace(',', '.');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
             }
         }
 
