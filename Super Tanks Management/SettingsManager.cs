@@ -33,6 +33,13 @@ namespace Super_Tanks_Management
             return filePath;
         }
 
+        public static void SaveSettings(string filePath, Dictionary<string, TextBox> textBoxMapping)
+        {
+            string[] lines = textBoxMapping.Select(kvp => $"{kvp.Key} = {kvp.Value.Text}").ToArray();
+            File.WriteAllLines(filePath, lines);
+            MessageBox.Show("Settings saved.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         public static void LoadTextBoxSettings(Dictionary<TextBox, Range> textBoxSettings, Control.ControlCollection controls)
         {
             foreach (var kvp in textBoxSettings)
@@ -105,13 +112,6 @@ namespace Super_Tanks_Management
                     }
                 };
             }
-        }
-
-        public static void SaveSettings(string filePath, Dictionary<string, TextBox> textBoxMapping)
-        {
-            string[] lines = textBoxMapping.Select(kvp => $"{kvp.Key} = {kvp.Value.Text}").ToArray();
-            File.WriteAllLines(filePath, lines);
-            MessageBox.Show("Settings saved.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
