@@ -1,78 +1,44 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Super_Tanks_Management
 {
     public partial class SuperTanksSettingsForm : Form
     {
-        private string filePath = string.Empty;
+        private readonly string filePath = string.Empty;
+        private readonly Dictionary<string, TextBox> textBoxMapping;
 
         public SuperTanksSettingsForm()
         {
             InitializeComponent();
-            LoadSettings();
-            LoadTextBoxSettings();
-        }
 
-        private void LoadSettings()
-        {
-            filePath = AllowedTanksForm.filePath.Replace("allowtanks.txt", "st_tanksettings.txt");
-            string[] lines = File.ReadAllLines(filePath);
-
-            foreach (string line in lines)
+            textBoxMapping = new Dictionary<string, TextBox>()
             {
-                string[] parts = line.Split('=').Select(p => p.Trim()).ToArray();
+                { "wraith_tank_visible_time", textBox1 },
+                { "phantom_tank_bleed_interval", textBox2 },
+                { "necro_tank_witch_hp", textBox3 },
+                { "necromancer_effect_range", textBox4 },
+                { "necro_tank_witch_damage", textBox5 },
+                { "police_tank_flash_color", textBox6 }
+            };
 
-                if (parts.Length == 2)
-                {
-                    string key = parts[0];
-                    string value = parts[1];
+            filePath = SettingsManager.LoadSettings("st_tanksettings.txt", textBoxMapping);
 
-                    switch (key)
-                    {
-                        case "wraith_tank_visible_time": textBox1.Text = value; break;
-                        case "phantom_tank_bleed_interval": textBox2.Text = value; break;
-                        case "necro_tank_witch_hp": textBox3.Text = value; break;
-                        case "necromancer_effect_range": textBox4.Text = value; break;
-                        case "necro_tank_witch_damage": textBox5.Text = value; break;
-                        case "police_tank_flash_color": textBox6.Text = value; break;
-                    }
-                }
-            }
-        }
-
-        private void LoadTextBoxSettings()
-        {
-            textBox1.Tag = new Range { Min = 0.1, Max = 10, IsInteger = false };
-            textBox2.Tag = new Range { Min = 0.1, Max = 15, IsInteger = false };
-            textBox3.Tag = new Range { Max = 0.9, IsInteger = false };
-            textBox4.Tag = new Range { Min = 200, Max = 1000000 };
-            textBox5.Tag = new Range { Min = 0.01, Max = 1000000, IsInteger = false };
-            textBox6.Tag = new Range { Max = 255 };
-
-            foreach (var textBox in Controls.OfType<TextBox>())
+            SettingsManager.LoadTextBoxSettings(new Dictionary<TextBox, Range>
             {
-                textBox.KeyPress += Range.TextBox_KeyPress;
-                textBox.TextChanged += Range.TextBox_TextChanged;
-            }
+                { textBox1, new Range() { Min = 0.1, Max = 10, IsInteger = false } },
+                { textBox2, new Range() { Min = 0.1, Max = 15, IsInteger = false } },
+                { textBox3, new Range() { Max = 0.9, IsInteger = false } },
+                { textBox4, new Range() { Min = 200, Max = 1000000 } },
+                { textBox5, new Range() { Min = 0.01, Max = 1000000, IsInteger = false } },
+                { textBox6, new Range() { Max = 255 } }
+            }, Controls);
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            string[] lines = new string[]
-            {
-                $"wraith_tank_visible_time = {textBox1.Text}",
-                $"phantom_tank_bleed_interval = {textBox2.Text}",
-                $"necro_tank_witch_hp = {textBox3.Text}",
-                $"necromancer_effect_range = {textBox4.Text}",
-                $"necro_tank_witch_damage = {textBox5.Text}",
-                $"police_tank_flash_color = {textBox6.Text}"
-            };
-
-            File.WriteAllLines(filePath, lines);
-            MessageBox.Show("Settings saved.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            SettingsManager.SaveSettings(filePath, textBoxMapping);
         }
 
         private void GoBackButton_Click(object sender, EventArgs e)

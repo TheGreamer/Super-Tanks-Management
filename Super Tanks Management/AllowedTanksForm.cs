@@ -10,7 +10,7 @@ namespace Super_Tanks_Management
 {
     public partial class AllowedTanksForm : Form
     {
-        public static string filePath = string.Empty;
+        private string filePath = string.Empty;
         private bool state = false;
         private readonly Dictionary<string, int> attributes = new Dictionary<string, int>();
 
