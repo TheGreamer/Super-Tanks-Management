@@ -105,7 +105,53 @@ namespace Super_Tanks_Management
             {
                 string selected = listBoxSuperTanks.SelectedItem.ToString().Split('-')[0].Trim();
                 attributes[selected] = attributes[selected] == 1 ? 0 : 1;
-                labelStatus.Text = $"Status: {selected} is now {(attributes[selected] == 1 ? "active" : "inactive")}";
+
+                if (selected.Contains("lord") || selected.Contains("Lord"))
+                {
+                    labelStatus.Text = $"Status: {selected} Tank is now {(attributes[selected] == 1 ? "active" : "inactive")}";
+                }
+                else
+                {
+                    string variant = string.Empty;
+
+                    switch (selected)
+                    {
+                        case "Illusion": variant = "Delusion"; break;
+                        case "Death": variant = "Void"; break;
+                        case "Admin": variant = "Abusive"; break;
+                        case "Mech": variant = "Legion"; break;
+                        case "Phantom": variant = "Wraith"; break;
+                        case "Spawner": variant = "General"; break;
+                        case "Trickster": variant = "Jester"; break;
+                        case "Shield": variant = "Fortress"; break;
+                        case "Necromancer": variant = "Shaman"; break;
+                        case "Freezing": variant = "Hydrofrost"; break;
+                        case "Immortal": variant = "Samsara"; break;
+                        case "Swift": variant = "Shift"; break;
+                        case "Acid": variant = "Noxious"; break;
+                        case "Reflector": variant = "Disarm"; break;
+                        case "Injury": variant = "Infectious"; break;
+                        case "Earthquake": variant = "Disruptive"; break;
+                        case "Explosive": variant = "Nuke"; break;
+                        case "Fire": variant = "Hellfire"; break;
+                        case "Bloodlust": variant = "Bloodhunger"; break;
+                        case "Blackhole": variant = "Singularity"; break;
+                        case "Meteor": variant = "Doomsday"; break;
+                        case "Boomer": variant = "Corrupted"; break;
+                        case "Wizard": variant = "Sorcerer"; break;
+                        case "Lightning": variant = "Thunderstorm"; break;
+                        case "Enrage": variant = "Berserker"; break;
+                        case "Wind": variant = "Tempest"; break;
+                        case "Steelweaver": variant = "Steelforge"; break;
+                        case "Thief": variant = "Purloiner"; break;
+                        case "Binder": variant = "Linker"; break;
+                        case "Poison": variant = "Venomous"; break;
+                        case "Police": variant = "SWAT"; break;
+                    }
+
+                    labelStatus.Text = $"Status: {selected} Tank and it's variant {variant} Tank are now {(attributes[selected] == 1 ? "active" : "inactive")}";
+                }
+
                 UpdateListBox();
                 SaveAttributesToFile();
             }
