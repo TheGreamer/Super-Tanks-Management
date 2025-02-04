@@ -10,10 +10,13 @@ namespace Super_Tanks_Management
 {
     public partial class AllowedTanksForm : Form
     {
+        #region Fields
         private string filePath = string.Empty;
         private bool state = false;
         private readonly Dictionary<string, int> attributes = new Dictionary<string, int>();
+        #endregion
 
+        #region Methods
         public AllowedTanksForm()
         {
             InitializeComponent();
@@ -91,6 +94,21 @@ namespace Super_Tanks_Management
             }
         }
 
+        private void ToggleAll(bool isActive, string message)
+        {
+            foreach (string key in attributes.Keys.ToList())
+            {
+                attributes[key] = isActive ? 1 : 0;
+            }
+
+            labelStatus.Text = message;
+
+            UpdateListBox();
+            SaveAttributesToFile();
+        }
+        #endregion
+
+        #region Events
         private void AllowedTanksForm_Load(object sender, EventArgs e)
         {
             if (state)
@@ -163,26 +181,12 @@ namespace Super_Tanks_Management
 
         private void ButtonActivateAll_Click(object sender, EventArgs e)
         {
-            foreach (string key in attributes.Keys.ToList())
-            {
-                attributes[key] = 1;
-            }
-
-            labelStatus.Text = "Status: All super tanks are now active";
-            UpdateListBox();
-            SaveAttributesToFile();
+            ToggleAll(true, "Status: All super tanks are now active");
         }
 
         private void ButtonDeactivateAll_Click(object sender, EventArgs e)
         {
-            foreach (string key in attributes.Keys.ToList())
-            {
-                attributes[key] = 0;
-            }
-
-            labelStatus.Text = "Status: All super tanks are now inactive";
-            UpdateListBox();
-            SaveAttributesToFile();
+            ToggleAll(false, "Status: All super tanks are now inactive");
         }
 
         private void ListBoxSuperTanks_DrawItem(object sender, DrawItemEventArgs e)
@@ -219,5 +223,6 @@ namespace Super_Tanks_Management
         {
             new SuperTanksSettingsForm().ShowDialog();
         }
+        #endregion
     }
 }
